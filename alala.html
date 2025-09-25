@@ -1,0 +1,131 @@
+<!DOCTYPE html><html lang="pt-BR"></html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Site Astral</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #ecd5f5;
+      margin: 0;
+      padding: 20px;
+    }
+    h1, h2 {
+      text-align: center;
+      color: #c88ff1;
+    }
+    form {
+      max-width: 400px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: bold;
+    }
+    input[type="text"], input[type="date"], input[type="time"] {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: #9838dd;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #b48be0;
+    }
+    .resultados {
+      max-width: 600px;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 15px;
+      padding: 10px;
+      background-color: #f0f0ff;
+      border-radius: 6px;
+    }
+  </style>
+</head>
+<body>  <h1>Descubra Qual o seu Ascendente, Seu Sol e Sua Lua</h1>
+    <form id="mapaForm" onsubmit="return gerarMapa(event)">
+    <label for="nome">Nome</label>
+    <input type="text" id="nome" name="nome" placeholder="Seu nome"><label for="data">Data de Nascimento</label>
+<input type="date" id="data" name="data" required>
+
+<label for="hora">Hora do Nascimento</label>
+<input type="time" id="hora" name="hora" required>
+
+<label for="local">Local do Nascimento</label>
+<input type="text" id="local" name="local" placeholder="Cidade, País" required>
+
+<button type="submit">Gerar Mapa</button>
+
+  </form>  <div class="resultados" id="resultados" style="display:none;">
+    <h2>Signos</h2>
+    <ul>
+      <li id="signoSolar"></li>
+      <li id="signoAscendente"></li>
+      <li id="signoLunar"></li>
+    </ul>
+  </div>  <script>
+    const solares = ["Áries", "Touro", "Gêmeos", "Câncer", "Leão", "Virgem", "Libra", "Escorpião", "Sagitário", "Capricórnio", "Aquário", "Peixes"];
+    const descricoes = {
+      "Áries": "Intenso e Impaciente.",
+      "Touro": "Estavel e Praticos.",
+      "Gêmeos": "Curioso e Comunicativo.",
+      "Câncer": "Sensivel e Intuitivo.",
+      "Leão": "Confiante e Arrogante.",
+      "Virgem": "Detalhista e Organizado.",
+      "Libra": "Equilibrado e Indeciso.",
+      "Escorpião": "Misterioso e Intuitivo.",
+      "Sagitário": "Extrovertido e Espotaneo.",
+      "Capricórnio": "Ambicioso e Responsavel.",
+      "Aquário": "Calmo e Original.",
+      "Peixes": "Solidario e Generoso."
+    };
+
+    function gerarMapa(event) {
+      event.preventDefault();
+      const nome = document.getElementById('nome').value || 'Você';
+      const data = document.getElementById('data').value;
+      const hora = document.getElementById('hora').value;
+      const local = document.getElementById('local').value;
+
+      if(!data || !hora || !local){
+        alert('Por favor, preencha todos os campos!');
+        return false;
+      }
+
+      const signoSolar = solares[Math.floor(Math.random() * solares.length)];
+      const signoAscendente = solares[Math.floor(Math.random() * solares.length)];
+      const signoLunar = solares[Math.floor(Math.random() * solares.length)];
+
+      document.getElementById('signoSolar').innerHTML = `<strong>Signo Solar:</strong> ${signoSolar} - ${descricoes[signoSolar]}`;
+      document.getElementById('signoAscendente').innerHTML = `<strong>Ascendente:</strong> ${signoAscendente} - ${descricoes[signoAscendente]}`;
+      document.getElementById('signoLunar').innerHTML = `<strong>Signo Lunar:</strong> ${signoLunar} - ${descricoes[signoLunar]}`;
+
+      document.getElementById('resultados').style.display = 'block';
+      return false;
+    }
+  </script></body>
+</html>
