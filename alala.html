@@ -8,7 +8,7 @@
       font-family: Arial, sans-serif;
       background-color: #ecd5f5;
       margin: 0;
-      padding: 20px;
+      padding: 90px;
     }
     h1, h2 {
       text-align: center;
@@ -16,16 +16,10 @@
     }
     form {
       max-width: 400px;
-      margin: 20px auto;
+      margin: 60px auto;
       background: #fff;
       padding: 20px;
       border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    label {
-      display: block;
-      margin-bottom: 6px;
-      font-weight: bold;
     }
     input[type="text"], input[type="date"], input[type="time"] {
       width: 100%;
@@ -41,10 +35,7 @@
       color: white;
       border: none;
       border-radius: 4px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #b48be0;
+
     }
     .resultados {
       max-width: 600px;
@@ -52,7 +43,6 @@
       background: #fff;
       padding: 20px;
       border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
     ul {
       list-style-type: none;
@@ -66,7 +56,7 @@
     }
   </style>
 </head>
-<body>  <h1>Descubra Qual o seu Ascendente, Seu Sol e Sua Lua</h1>
+<body>  <h1>Descubra Qual o seu Ascendente, Sol e Lua</h1>
     <form id="mapaForm" onsubmit="return gerarMapa(event)">
     <label for="nome">Nome</label>
     <input type="text" id="nome" name="nome" placeholder="Seu nome"><label for="data">Data de Nascimento</label>
@@ -89,19 +79,8 @@
     </ul>
   </div>  <script>
     const solares = ["Áries", "Touro", "Gêmeos", "Câncer", "Leão", "Virgem", "Libra", "Escorpião", "Sagitário", "Capricórnio", "Aquário", "Peixes"];
-    const descricoes = {
-      "Áries": "Intenso e Impaciente.",
-      "Touro": "Estavel e Praticos.",
-      "Gêmeos": "Curioso e Comunicativo.",
-      "Câncer": "Sensivel e Intuitivo.",
-      "Leão": "Confiante e Arrogante.",
-      "Virgem": "Detalhista e Organizado.",
-      "Libra": "Equilibrado e Indeciso.",
-      "Escorpião": "Misterioso e Intuitivo.",
-      "Sagitário": "Extrovertido e Espotaneo.",
-      "Capricórnio": "Ambicioso e Responsavel.",
-      "Aquário": "Calmo e Original.",
-      "Peixes": "Solidario e Generoso."
+    const descricoes = {"Áries": "Intenso e Impaciente.", "Touro": "Estavel e Praticos.", "Gêmeos": "Curioso e Comunicativo.", "Câncer": "Sensivel e Intuitivo.", "Leão": "Confiante e Arrogante.", "Virgem": "Detalhista e Organizado.",
+      "Libra": "Equilibrado e Indeciso.", "Escorpião": "Misterioso e Intuitivo.", "Sagitário": "Extrovertido e Espotaneo.", "Capricórnio": "Ambicioso e Responsavel.", "Aquário": "Calmo e Original.", "Peixes": "Solidario e Generoso."
     };
 
     function gerarMapa(event) {
@@ -112,18 +91,15 @@
       const local = document.getElementById('local').value;
 
       if(!data || !hora || !local){
-        alert('Por favor, preencha todos os campos!');
+        alert('Preencha todos os campos!');
         return false;
       }
-
       const signoSolar = solares[Math.floor(Math.random() * solares.length)];
       const signoAscendente = solares[Math.floor(Math.random() * solares.length)];
       const signoLunar = solares[Math.floor(Math.random() * solares.length)];
-
       document.getElementById('signoSolar').innerHTML = `<strong>Signo Solar:</strong> ${signoSolar} - ${descricoes[signoSolar]}`;
       document.getElementById('signoAscendente').innerHTML = `<strong>Ascendente:</strong> ${signoAscendente} - ${descricoes[signoAscendente]}`;
       document.getElementById('signoLunar').innerHTML = `<strong>Signo Lunar:</strong> ${signoLunar} - ${descricoes[signoLunar]}`;
-
       document.getElementById('resultados').style.display = 'block';
       return false;
     }
